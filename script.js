@@ -10,11 +10,30 @@ document.getElementById("generate").onclick = function () { passwordCriteria() }
 
 function passwordCriteria() {
   var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
-  capsLetter = confirm("Click ok to confirm including upper case letters.");
-  lowLetter = confirm("Click ok to confirm including lower case letters.");
-  num = confirm("Click ok to confirm including numbers.");
-  sym = confirm("Click ok to confirm including special characters.");
+  
+  if (length >= 128 ) {
+    alert("Inavild number");
+    var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
+  }
+  if (length <= 8) {
+    alert("Invalid number");
+    var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
+  }
+  
+  var capsLetter = confirm("Click ok to confirm including upper case letters.");
+  var lowLetter = confirm("Click ok to confirm including lower case letters.");
+  var num = confirm("Click ok to confirm including numbers.");
+  var sym = confirm("Click ok to confirm including special characters.");
+  
+  if (capsLetter === false && lowLetter === false && num === false && sym === false) {
+    alert("Need to confirm one character type");
+    var capsLetter = confirm("Click ok to confirm including upper case letters.");
+    var lowLetter = confirm("Click ok to confirm including lower case letters.");
+    var num = confirm("Click ok to confirm including numbers.");
+    var sym = confirm("Click ok to confirm including special characters.");
+  }
 }
+
 
 // Write password to the #password input
 function writePassword() {
