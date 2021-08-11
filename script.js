@@ -1,11 +1,11 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var lowercaseLetters = "abcdefghijkmnlopqrstuvwxyz";
-var numbers = "0123456789";
-var symbols = "\u0020\u0021\u0022\u0023\u0024\u0025\u0026\u0027\u0028\u0029\u002A\u002B\u002C\u002D\u002E\u002F\u003A\u003B\u003C\u003D\u003E\u003F\u0040\u005B\u005C\u005D\u005E\u005F\u0060\u007B\u007C\u007D\u007E";
+var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "m", "n", "l", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var symbols = ["!","#", "$", "%", "&","'","(",")","*", "+",",", "-",".","/",":",";","<","=",">","?","@","[","]","^", "_","`","{", "|", "}", "~"];
 
-var length = "";
+var passwordLength;
 var capsLetter;
 var lowLetter;
 var num;
@@ -14,23 +14,23 @@ var sym;
 generateBtn.onclick;
 
 function generatePassword() {
-  
-  var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
 
-  if (length >= 128) {
+  var passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
+
+  if ( passwordLength >= 127) {
     alert("Inavild number");
-    var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
+    var passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
   }
-  if (length <= 8) {
+  if (passwordLength <= 7) {
     alert("Invalid number");
-    var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
+    var passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
   }
 
-  console.log(length);
+  console.log(passwordLength);
 
   for (let i = 0; i < 4; i++) {
 
-    var capsLetter = prompt("Include upper case letters? Enter Y or N");
+    var capsLetter = (prompt("Include upper case letters? Enter Y or N"));
 
     if (capsLetter === "Y") {
       console.log(capsLetter);
@@ -40,10 +40,10 @@ function generatePassword() {
     }
     else {
       alert("Invalid input");
-      var capsLetter = prompt("Include upper case letters? Enter Y or N");
+      var capsLetter = (prompt("Include upper case letters? Enter Y or N"));
     }
 
-    var lowLetter = prompt("Include lower case letters? Enter Y or N");
+    var lowLetter = (prompt("Include lower case letters? Enter Y or N"));
 
     if (lowLetter === "Y") {
       console.log(lowLetter);
@@ -52,10 +52,10 @@ function generatePassword() {
       console.log(lowLetter);
     } else {
       alert("Invalid input");
-      var lowLetter = prompt("Include lower case letters? Enter Y or N");
+      var lowLetter = (prompt("Include lower case letters? Enter Y or N"));
     }
 
-    var num = prompt("Include numbers? Enter Y or N");
+    var num = (prompt("Include numbers? Enter Y or N"));
 
     if (num === "Y") {
       console.log(num);
@@ -64,10 +64,10 @@ function generatePassword() {
       console.log(num);
     } else {
       alert("Invalid input");
-      var num = prompt("Include numbers? Enter Y or N");
+      var num = (prompt("Include numbers? Enter Y or N"));
     }
 
-    var sym = prompt("Include special characters? Enter Y or N");
+    var sym = (prompt("Include special characters? Enter Y or N"));
 
     if (sym === "Y") {
       console.log(sym);
@@ -76,7 +76,7 @@ function generatePassword() {
       console.log(sym);
     } else {
       alert("Invalid input");
-      var sym = prompt("Include special characters? Enter Y or N");
+      var sym = (prompt("Include special characters? Enter Y or N"));
     }
 
     if (i === 4) {
@@ -84,16 +84,45 @@ function generatePassword() {
       console.log(i);
       i = 0;
     } else if (i === 3) {
-      return;
+      i = 5;
     } else if (i === 2) {
-      return;
+      i = 5;
     } else if (i === 1) {
-      return;
+      i = 5;
     } else if (i === 0) {
-      return;
+      i = 5;
     }
 
   }
+
+  var charcterTypes = [];
+
+  if (capsLetter === "Y") {
+    charcterTypes = charcterTypes.concat(uppercaseLetters);
+  }
+
+  if (lowLetter === "Y") {
+    charcterTypes = charcterTypes.concat(lowercaseLetters);
+  }
+
+  if (num === "Y") {
+    charcterTypes = charcterTypes.concat(numbers);
+  }
+
+  if (sym === "Y") {
+    charcterTypes = charcterTypes.concat(symbols);
+  }
+
+  console.log(charcterTypes);
+
+  var firstPassword = "";
+
+  for (let d = 0; d < passwordLength; d++) {
+    firstPassword = firstPassword + charcterTypes[Math.floor(Math.random() * charcterTypes.length)];
+    console.log(firstPassword);
+  }
+
+  return firstPassword;
 }
 
 
