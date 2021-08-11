@@ -10,8 +10,8 @@ document.getElementById("generate").onclick = function () { passwordCriteria() }
 
 function passwordCriteria() {
   var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
-  
-  if (length >= 128 ) {
+
+  if (length >= 128) {
     alert("Inavild number");
     var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
   }
@@ -19,19 +19,63 @@ function passwordCriteria() {
     alert("Invalid number");
     var length = prompt("What will be the length of the password? Enter a number between 8 and 128");
   }
-  
-  var capsLetter = confirm("Click ok to confirm including upper case letters.");
-  var lowLetter = confirm("Click ok to confirm including lower case letters.");
-  var num = confirm("Click ok to confirm including numbers.");
-  var sym = confirm("Click ok to confirm including special characters.");
-  
-  if (capsLetter === false && lowLetter === false && num === false && sym === false) {
-    alert("Need to confirm one character type");
-    var capsLetter = confirm("Click ok to confirm including upper case letters.");
-    var lowLetter = confirm("Click ok to confirm including lower case letters.");
-    var num = confirm("Click ok to confirm including numbers.");
-    var sym = confirm("Click ok to confirm including special characters.");
+  for (let i = 0; i < 4; i++)  {
+    var capsLetter = prompt("Include upper case letters? Enter Y or N");
+    if (capsLetter === "Y") {
+      console.log(capsLetter);
+      console.log(i);
+    } else if (capsLetter === "N") {
+      i++;
+      console.log(i);
+    }
+    else {
+      alert("Invalid input");
+      var capsLetter = prompt("Include upper case letters? Enter Y or N");
+    }
+    var lowLetter = prompt("Include lower case letters? Enter Y or N");
+    if (lowLetter === "Y") {
+      console.log(lowLetter);
+      console.log(i);
+    } else if (lowLetter === "N") {
+      i++;
+      console.log(i);
+    } else {
+      alert("Invalid input");
+      var lowLetter = prompt("Include lower case letters? Enter Y or N");
+    }
+    var num = prompt("Include numbers? Enter Y or N");
+    if (num === "Y") {
+      console.log(num);
+      console.log(i);
+    } else if (num === "N") {
+      i++;
+      console.log(i);
+    } else {
+      alert("Invalid input");
+      var num = prompt("Include numbers? Enter Y or N");
+    }
+    var sym = prompt("Include special characters? Enter Y or N");
+    if (sym === "Y") {
+      console.log(sym);
+      console.log(i);
+    } else if (sym === "N") {
+      i++;
+      console.log(i);
+    } else {
+      alert("Invalid input");
+      var sym = prompt("Include special characters? Enter Y or N");
+    }
+    if (i === 4) {
+      console.log(i);
+      alert("Choose at least one character type.")
+      i=0;
+    } 
   }
+
+
+
+
+
 }
 
 
