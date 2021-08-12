@@ -12,37 +12,44 @@ var lowLetter;
 var num;
 var specialSym;
 
+//When Generate button is clicked present a series of prompts for password criteria
 generateBtn.onclick;
 
 function generatePassword() {
+ 
+  //Ask user for length of password that is between 8 and 128.
+  
+  do {
+    passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
 
-  var passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
+    if (passwordLength >= 127) {
+      alert("Inavild number");
+    } else if (passwordLength <= 7) {
+      alert("Invalid number");
+    }
 
-  if (passwordLength >= 127) {
-    alert("Inavild number");
-    var passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
-  }
-  if (passwordLength <= 7) {
-    alert("Invalid number");
-    var passwordLength = (prompt("What will be the length of the password? Enter a number between 8 and 128"));
-  }
+  } while (passwordLength >= 127 || passwordLength <= 7);
 
   console.log(passwordLength);
 
-  var capsLetter = confirm("Click ok to confirm including upper case letters.");
-  var lowLetter = confirm("Click ok to confirm including lower case letters.");
-  var num = confirm("Click ok to confirm including numbers.");
-  var specialSym = confirm("Click ok to confirm including special characters.");
+  //Ask user for which charcter types to incude in password and at least one is selected.
+  
+  do {
+    capsLetter = confirm("Click ok to confirm including upper case letters.");
+    lowLetter = confirm("Click ok to confirm including lower case letters.");
+    num = confirm("Click ok to confirm including numbers.");
+    specialSym = confirm("Click ok to confirm including special characters.");
 
-  if (capsLetter === false && lowLetter === false && num === false && specialSym === false) {
-    alert("Need to confirm one character type");
-    var capsLetter = confirm("Click ok to confirm including upper case letters.");
-    var lowLetter = confirm("Click ok to confirm including lower case letters.");
-    var num = confirm("Click ok to confirm including numbers.");
-    var specialSym = confirm("Click ok to confirm including special characters.");
-  }
+    if (capsLetter === false && lowLetter === false && num === false && specialSym === false){
+      alert("Need to confirm one character type");
+    }
+
+  } while (capsLetter === false && lowLetter === false && num === false && specialSym === false);
+  
+  // Add user choices of character types into a empty array
+  
   var charcterTypes = [];
-
+  
   if (capsLetter) {
     charcterTypes = charcterTypes.concat(uppercaseLetters);
   }
@@ -60,7 +67,9 @@ function generatePassword() {
   }
 
   console.log(charcterTypes);
-
+  
+  // Generates Password 
+  
   var firstPassword = "";
 
   for (let d = 0; d < passwordLength; d++) {
@@ -71,8 +80,8 @@ function generatePassword() {
   return firstPassword;
 }
 
-
 // Write password to the #password input
+
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -81,4 +90,5 @@ function writePassword() {
 }
 
 // Add event listener to generate button
+//Writes passsword on page
 generateBtn.addEventListener("click", writePassword);
